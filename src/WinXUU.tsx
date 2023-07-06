@@ -35,7 +35,7 @@ const WinXUU = () => {
     <Template>
       <div className="column">
         <h1>Improve your PC</h1>
-        <p>Make your PC Much faster.</p>
+        <p>Make your PC <em><u>much</u></em> faster.</p>
       </div>
       <div className="column">
         <ol>
@@ -51,7 +51,7 @@ const WinXUU = () => {
       <footer>
         🚀 Built in <a href="bit.ly/homelab-discord">HomeLab</a> - Inspired by <a href="https://github.com/chkpwd">chkpwd</a> <a onClick={() => {
           setTosIsActive(true)
-        }}> Terms</a>
+        }}> - Terms</a>
 
       </footer>
     </Template>
