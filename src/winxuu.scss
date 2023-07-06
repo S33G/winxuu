@@ -1,0 +1,98 @@
+$breakpoint: 768px;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+@media screen and (max-width: $breakpoint) {
+    html {
+        font-size: 20px;
+    }
+    .column {
+        margin-top: 3rem;
+    }
+}
+
+
+.container {
+    width: 100svw;
+    height: 100svh;
+    display: grid;
+
+
+    & > .wrapper {
+        display: grid;
+        grid-gap: 1rem;
+        padding: 1rem;
+        background: #fff;
+        border-radius: 0.5rem;
+        margin: 1rem;
+        align-self: stretch;
+        justify-self: stretch;
+        align-content: space-between;
+        grid-template-columns: repeat(2, 1fr);
+        // Make a nice animated gradient that looks like rainbow vomit
+        // Make the above gradient significantly brigher
+        background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+
+        & ol, h1, p, a {
+            mix-blend-mode: color-dodge;
+        }
+
+        & h1 {
+            mix-blend-mode: color-dodge;
+            font-size: 2rem;
+            & > span {
+                color: #fff;
+            }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+    }
+
+
+    @media screen and (max-width: $breakpoint) {
+        & > .wrapper {
+            grid-template-columns: 1fr;
+
+            & > ol {
+                width: 200px;
+                margin: 0 auto;
+            }
+        }
+    }
+    & footer {
+        mix-blend-mode: color-dodge;
+    }
+
+    & a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
