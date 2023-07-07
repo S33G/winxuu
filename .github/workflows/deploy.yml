@@ -3,7 +3,7 @@ name: Vite Github Pages Deploy
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
+    branches: ["main"]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -18,11 +18,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     environment:
-      name: demo
+      name: pages
       url: ${{ steps.deploy_to_pages.outputs.github_pages_url }}
     steps:
       - name: Checkout
@@ -30,3 +29,6 @@ jobs:
       - name: Vite Github Pages Deployer
         uses: skywarth/vite-github-pages-deployer@master
         id: deploy_to_pages
+        with:
+          public_base_path: /
+
