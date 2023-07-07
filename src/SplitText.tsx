@@ -24,21 +24,14 @@ const SplitText = (props: SplitTextProps) => {
 
   const characters: ReactElement[] = []
 
-  console.log('SplitText', props)
-
   // Split the text into characters
   children.split("").map((char, idx) => {
-    console.log(char)
-
     let length = 0
     if (char == " ") {
       length = 0
-      console.log('length reset')
     } else {
       length = char.length
-
     }
-
 
     const attrs = {
       role: role,
