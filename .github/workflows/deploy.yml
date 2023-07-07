@@ -1,28 +1,32 @@
-name: NodeJS with Grunt
+name: Vite Github Pages Deploy
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["master"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
+    environment:
+      name: demo
+      url: ${{ steps.deploy_to_pages.outputs.github_pages_url }}
     steps:
-    - name: Vite Github Pages Deployer
-      uses: skywarth/vite-github-pages-deployer@v1.2.0
-      with:
-        # Public base path string for vite, this affects the routing, history and asset links. Make sure to provide appropriately since Github Pages stores your app in a directory under a subdomain.
-        public_base_path: /
-        build_path: ./dist
-        install_phase_node_env: development
-        build_phase_node_env: prodduction
-        package_manager: npm
-        artifact_name: static
-        debug_mode: false
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Vite Github Pages Deployer
+        uses: skywarth/vite-github-pages-deployer@master
+        id: deploy_to_pages
