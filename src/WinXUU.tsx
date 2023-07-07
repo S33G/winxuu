@@ -56,9 +56,11 @@ const WinXUU = () => {
       </div>
 
       <footer>
-        <AiFillGithub style={{
-          fontSize: '4rem',
-        }} />
+        <a href="https://github.com/s33g/winxuu">
+          <AiFillGithub style={{
+            fontSize: '4rem',
+          }} />
+        </a>
         <a onClick={() => {
           setTosIsActive(true)
         }}>Terms</a>
