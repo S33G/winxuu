@@ -1,4 +1,4 @@
-import React, { ElementType, ReactElement, createElement } from "react";
+import { ElementType, ReactElement, createElement } from "react";
 
 export type SplitTextAnimationType = "fade" | "slide" | "bounce"
 export enum SplitTextAnimationTypeEnum {

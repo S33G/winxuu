@@ -3,30 +3,6 @@ import './winxuu.scss'
 import { AiFillWindows, AiFillGithub } from 'react-icons/ai'
 import Template from './Template'
 import SplitText, { SplitTextAnimationTypeEnum } from './SplitText'
-import { useCallback } from "react";
-import Particles from "react-particles";
-import type { Container, Engine } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
-import Background from './Background'
-
-const App = () => {
-    const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
-
-        // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
-        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-        // starting from v2 you can add only the features you need reducing the bundle size
-        await loadFull(engine);
-    }, []);
-
-    const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        await console.log(container);
-    }, []);
-
-    return (
-        <Particles id="tsparticles" url="http://foo.bar/particles.json" init={particlesInit} loaded={particlesLoaded} />
-    );
-};
 
 const WinXUU = () => {
   const [tosIsActive, setTosIsActive] = useState<boolean>(false)
@@ -36,7 +12,7 @@ const WinXUU = () => {
       <a onClick={() => {
         setTosIsActive(false)
       }}>Back</a>
-      <SplitText role={"heading"} elementType={'h1'}>Terms of Service</SplitText>
+      <SplitText role={"heading"} elementType={'h1'} animationType={'bounce'}>Terms of Service</SplitText>
       <p>WIN X / U + U ("we," "us," or "the Company") provides WIN X / U + U ("the Service") which may involve the remote shutdown or termination of users' computers or devices. By using the Service, you ("the User") agree to the following terms:</p>
 
       <p>Acknowledgment of Risk: The User acknowledges and understands that the Service has the capability to remotely shut down or terminate the User's computer or device. The User expressly assumes any and all risks associated with the use of the Service, including any potential loss of data, interruptions, or damages resulting from the shutdown or termination of the User's computer or device.</p>
