@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
 
     steps:
     - name: Vite Github Pages Deployer
@@ -21,7 +21,7 @@ jobs:
         # Public base path string for vite, this affects the routing, history and asset links. Make sure to provide appropriately since Github Pages stores your app in a directory under a subdomain.
         public_base_path: /
         build_path: ./dist
-        install_phase_node_env: production
+        install_phase_node_env: development
         build_phase_node_env: prodduction
         package_manager: npm
         artifact_name: static
