@@ -24,7 +24,7 @@ body {
         & > span {
             color: black !important;
             mix-blend-mode: hard-light;
-            animation: bounce cubic-bezier(0.895, 0.03, 0.685, 0.22) ease infinite alternate;
+            animation: bounce 4s ease infinite;
             display: inline-block;
             transform-origin: center;
 
@@ -39,19 +39,19 @@ body {
             @keyframes bounce {
                 0% {
                     transform: translateY(0);
-                    transform: scale(0.9);
+                    transform: scale(1);
                 }
                 25% {
                     transform: translateY(0);
-                    transform: scale(0.2);
+                    transform: scale(.9);
                 }
                 50% {
-                    transform: translateY(0);
-                    transform: scale(0.7);
+                    transform: translateY(1rem);
+                    transform: scale(.7);
                 }
                 75% {
-                    transform: translateY(0);
-                    transform: scale(1.1);
+                    transform: translateY(10px);
+                    transform: scale(2rem);
                 }
                 100% {
                     transform: translateY(-0.25rem);

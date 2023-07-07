@@ -13,8 +13,8 @@ interface SplitTextProps {
   elementType: ElementType;
   animationType: SplitTextAnimationType
 }
+
 const SplitText = (props: SplitTextProps) => {
-// Weird
   const {
     children,
     role,
