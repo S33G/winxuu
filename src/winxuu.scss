@@ -1,4 +1,4 @@
-$breakpoint: 900px;
+$breakpoint: 1200px;
 
 * {
     box-sizing: border-box;
@@ -13,23 +13,89 @@ body {
     color: #333;
 }
 
+#tsparticles {
+    z-index: -1;
+    position: absolute;
+}
+
+.split-text {
+
+    &-bounce {
+        & > span {
+            color: black !important;
+            mix-blend-mode: hard-light;
+            animation: bounce cubic-bezier(0.895, 0.03, 0.685, 0.22) ease infinite alternate;
+            display: inline-block;
+            transform-origin: center;
+
+            &[data-length='0'] {
+                width: 1rem;
+            }
+
+            &:empty {
+                width: 100px;
+                border: 1px solid #000;
+            }
+            @keyframes bounce {
+                0% {
+                    transform: translateY(0);
+                    transform: scale(0.9);
+                }
+                25% {
+                    transform: translateY(0);
+                    transform: scale(0.2);
+                }
+                50% {
+                    transform: translateY(0);
+                    transform: scale(0.7);
+                }
+                75% {
+                    transform: translateY(0);
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: translateY(-0.25rem);
+                    transform: scale(1.1);
+                }
+            }
+
+            @for $i from 1 through 20 {
+                &:nth-child(#{$i}) {
+                    // Make animation delay random
+                    animation-delay: $i * 0.6s;
+                }
+            }
+        }
+    }
+}
+
 html {
     // Animate a gradient from white to black very slowly
-    background: linear-gradient(45deg, #fff, #000);
+    // background: linear-gradient(45deg, #fff, #000);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-
     animation: gradient 15s ease infinite;
+
+    &.bg-ripple {
+        background-image: radial-gradient(circle, #fff 1%, #000 1%, #000 100%);
+        background-size: 1000% 1000%;
+        background-position: 50% 50%;
+        animation: ripple 5s linear infinite;
+    }
 
     @keyframes gradient {
         0% {
             background-position: 0% 50%;
+            background-color: #0000ff;
         }
         50% {
             background-position: 100% 50%;
+            background-color: #00f0ff;
         }
         100% {
             background-position: 0% 50%;
+            background-color: #01ffff;
+
         }
     }
     font-size: 25px;
@@ -37,15 +103,16 @@ html {
 
 body {
     // apply svg of windows.svg as background tiled and animate these from top right corner to bottom left corner
-    background-image: url('public/win.svg');
-    background-color: #100077;
-    // change svg color to white
-    background-blend-mode: hue;
-    background-repeat: repeat;
-    background-position: top right;
-    background-size: 100px 100px;
-    animation: logoAnimate 100s ease infinite;
-    @keyframes logoAnimate {
+    height: 100vh;
+    animation: container-bg-animate 20s ease infinite;
+    background-color: #000;
+    // Crazy background gradient
+    background: radial-gradient(#ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    box-shadow: 0 0 100px #000;
+
+    @keyframes gradient {
         0% {
             background-position: 0% 50%;
         }
@@ -59,50 +126,68 @@ body {
 }
 
 h1, h2 {
-    font-size: 4rem;
+    font-size: 2rem;
+    color: #000;
 }
 
-p {
-    font-size: 2rem;
+p, ul, li, a, small {
+    font-size: 1rem;
+    color: #000;
 }
 
-ol {
-    font-size: 2rem;
+ol > li {
+    font-size: 2.5rem;
+    color: #000;
+    font-weight: bold;
+}
+
+body, html, .container {
+    height: 100svh;
 }
 
 @media screen and (max-width: $breakpoint) {
     html {
-        font-size: 20px;
+        font-size: 15px;
     }
     .column {
         margin-top: 3rem;
     }
-}
 
+      h1 {
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+        margin-top: 1rem;
+      }
+
+      .column {
+        margin: 0;
+      }
+
+}
 
 .container {
     width: 100svw;
-    height: 100svh;
     display: grid;
-    opacity: 0.8;
 
     & > .wrapper {
+        border: 10px solid #efefef;
         display: grid;
         grid-gap: 1rem;
         padding: 1rem;
         background: #fff;
         border-radius: 0.5rem;
-        margin: 1rem;
+        margin: 9rem;
         align-self: stretch;
         justify-self: stretch;
         align-content: space-between;
         grid-template-columns: repeat(2, 1fr);
-        // Make a nice animated gradient that looks like rainbow vomit
-        // Make the above gradient significantly brigher
         background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80, #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000);
-
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
+        box-shadow: 0 0 100px #000;
 
         & ol, h1, h2, p, a {
             mix-blend-mode: hard-light;
@@ -133,6 +218,7 @@ ol {
     @media screen and (max-width: $breakpoint) {
         & > .wrapper {
             grid-template-columns: 1fr;
+            margin: 5rem;
 
             & > ol {
                 width: 200px;
@@ -142,6 +228,7 @@ ol {
     }
     & footer {
         mix-blend-mode: hard-light;
+        align-items: right;
     }
 
     & a {
